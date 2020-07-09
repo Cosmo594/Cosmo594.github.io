@@ -487,6 +487,11 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="string">"我是alert"</span>);</span><br></pre></td></tr></table></figure>
 
+<blockquote>
+<p>confirm()方法用于显示一个带有指定消息和确认及取消按钮的对话框。</p>
+<p>如果访问者点击”确定”，此方法返回true，否则返回false。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confirm(<span class="string">"我是confirm"</span>);</span><br></pre></td></tr></table></figure>
+</blockquote>
 <ul>
 <li>该内容将会被写到body中，并在页面中显示</li>
 </ul>
@@ -1315,7 +1320,7 @@ xxxYyyZzz</code></pre></li>
 <li><pre><code class="javascript"><span class="keyword">var</span> reg = <span class="regexp">/[A-z]/</span>;
 <span class="comment">//检查是否含有 abc 或 adc 或 aec</span>
 <span class="keyword">var</span> reg = <span class="regexp">/a[bde]c/</span>;
-&lt;!--￼<span class="number">63</span>--&gt;
+&lt;!--￼<span class="number">64</span>--&gt;
 </code></pre>
 </li>
 </ul>
@@ -1424,34 +1429,95 @@ xxxYyyZzz</code></pre></li>
 </ul>
 <img src="http://img.19980831.xyz/static/images/image-20200705224528291.png?imageView2/2/w/500">
 
-<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><ul>
-<li><p>在网页中浏览器已经为我们提供了<strong>document对象，它代表的是整个网页，它是window对象的属性，可以在页面中直接使用。</strong></p>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><p>在网页中浏览器已经为我们提供了<strong>document对象，它代表的是整个网页，它是window对象的属性，可以在页面中直接使用。</strong></p>
+<h4 id="DOM查询"><a href="#DOM查询" class="headerlink" title="DOM查询"></a>DOM查询</h4><blockquote>
+<p><strong>获取标签内部内容</strong></p>
 <ul>
-<li><strong>document查询方法：</strong><ul>
-<li>根据元素的id属性查询一个元素节点对象：<br>document.getElementById(“id属性值”);</li>
-<li>根据元素的name属性值查询一组元素节点对象:<br>document.getElementsByName(“name属性值”);</li>
-<li>根据标签名来查询一组元素节点对象：<br>document.getElementsByTagName(“标签名”);</li>
+<li><strong>innerHTML</strong></li>
+</ul>
+<p>使用该属性可以获取或设置元素内部的HTML代码，对于自结束标签，这个属性没有意义</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bj = <span class="built_in">document</span>.getElementById(<span class="string">"bj"</span>);</span><br><span class="line">alert(bj.innerHTML);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>innerText</strong><ul>
+<li>可以获取到标签内部的内容，不同是innerHTML<strong>会获取到html标签</strong>，而innerText<strong>会自动去除标签</strong></li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p><strong>读取元素的属性：</strong></p>
+<blockquote>
 <ul>
+<li>如果使用这两个属性来设置标签内部的内容时，没有任何区别的</li>
+<li>这两个属性并没有在DOM标准定义，但是大部分浏览器都支持这两个属性</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>nodeValue</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//h1中的文本内容</span></span><br><span class="line">元素.firstChild.nodeValue</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>根据元素的id属性查询一个元素节点对象：<br><strong>元素.getElementById(“id属性值”);</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//document查询</span></span><br><span class="line">&lt;li id=<span class="string">"bj"</span>&gt;北京&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">var bj = document.getElementById("bj");</span></span><br><span class="line"><span class="regexp">alert(bj.innerHTML);</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据元素的name属性值查询一组元素节点对象:<br><strong>元素.entsByName(“name属性值”);</strong></p>
+<ul>
+<li><p>这个方法返回一个<strong>类数组</strong>对象，所有查询到的元素都会封装到对象中，即使查询到的元素只有一个，也会封装到数组中返回</p>
+<p><code>var img = document.getElementsByTagName(&quot;img&quot;)[0];//可直接取到第一个元素</code></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lis = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"li"</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;lis.length ; i++)&#123;</span><br><span class="line">	alert(lis[i].innerHTML);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据标签名来查询一组元素节点对象：<br><strong>元素.ElementsByTagName(“标签名”);</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//document查询</span></span><br><span class="line">&lt;input <span class="class"><span class="keyword">class</span></span>=<span class="string">"hello"</span> type=<span class="string">"radio"</span> name=<span class="string">"gender"</span> value=<span class="string">"female"</span>/&gt;</span><br><span class="line"><span class="keyword">var</span> inputs = <span class="built_in">document</span>.getElementsByName(<span class="string">"gender"</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;inputs.length ; i++)&#123;</span><br><span class="line">	alert(inputs[i].className);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//特定元素查询</span></span><br><span class="line"><span class="keyword">var</span> city = <span class="built_in">document</span>.getElementById(<span class="string">"city"</span>);</span><br><span class="line"><span class="keyword">var</span> lis = city.getElementsByTagName(<span class="string">"li"</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span> ; i&lt;lis.length ; i++)&#123;</span><br><span class="line">    alert(lis[i].innerHTML);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>获取元素的所有<strong>子节点</strong><br><strong>元素.childNodes</strong></p>
+<ul>
+<li>获取包括文本节点在内的所有节点，标签间空白也会当成文本节点</li>
+<li>注意：在IE8及以下的浏览器中，不会将空白文本当成子节点</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> city = <span class="built_in">document</span>.getElementById(<span class="string">"city"</span>);</span><br><span class="line"><span class="keyword">var</span> cns = city.childNodes;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取元素的所有<strong>子元素</strong></p>
+<p><strong>元素.children</strong></p>
+</li>
+<li><p>获取元素的第一个<strong>子节点</strong>（会获取到空白的文本子节点）</p>
+<p><strong>元素.firstChild</strong></p>
+</li>
+<li><p>获取元素的最后一个<strong>子节点</strong></p>
+<p><strong>元素.lastChild</strong></p>
+</li>
+<li><p>获取元素的第一个<strong>子元素</strong>（IE8及以下不支持）</p>
+<p><strong>元素.firstElementChild</strong></p>
+</li>
+<li><p>获取当前元素的<strong>父元素</strong></p>
+<p><strong>元素.parentNode</strong></p>
+</li>
+<li><p>获取当前元素的前一个<strong>兄弟节点</strong></p>
+<p><strong>元素.previousSibling</strong></p>
+</li>
+<li><p>获取前一个<strong>兄弟元素</strong>（IE8及以下不支持）</p>
+<p><strong>元素.previousElementSibling</strong></p>
+</li>
+<li><p>获取当前元素的后一个<strong>兄弟节点</strong></p>
+<p><strong>元素.nextSibling</strong></p>
+</li>
+</ul>
+<h4 id="读取元素的属性"><a href="#读取元素的属性" class="headerlink" title="读取元素的属性"></a>读取元素的属性</h4><ul>
 <li><p>语法：元素.属性名</p>
 </li>
 <li><p>例子：</p>
 <p>ele.name<br>ele.id<br>ele.value<br>ele.className</p>
 </li>
-<li><p>class属性不能采用这种方式，<br><strong>读取class属性时需要使用 元素.className</strong></p>
+<li><p>class属性不能采用这种方式，<strong>读取class属性时需要使用 元素.className</strong></p>
 </li>
 </ul>
-</li>
-<li><p><strong>修改元素的属性：</strong></p>
-</li>
-<li><p>语法：元素.属性名 = 属性值</p>
-</li>
-<li><p><strong>innerHTML</strong><br>使用该属性可以获取或设置元素内部的HTML代码</p>
-</li>
+<h4 id="修改元素的属性"><a href="#修改元素的属性" class="headerlink" title="修改元素的属性"></a>修改元素的属性</h4><ul>
+<li>语法：元素.属性名 = 属性值</li>
 </ul>
 <h3 id="事件（Event）"><a href="#事件（Event）" class="headerlink" title="事件（Event）"></a>事件（Event）</h3><p><strong>事件指的是用户和浏览器之间的交互行为</strong>，比如：点击按钮、关闭窗口、鼠标移动</p>
 <ul>
@@ -1479,6 +1545,61 @@ xxxYyyZzz</code></pre></li>
 </ul>
 <p>将js代码编写到window.onload = function(){}中<br>window.onload 对应的回调函数会在整个页面加载完毕以后才执行，<br>所以可以确保代码执行时，DOM对象已经加载完毕了</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;  </span><br><span class="line">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>);  </span><br><span class="line">        btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="DOM查询的其他方法"><a href="#DOM查询的其他方法" class="headerlink" title="DOM查询的其他方法"></a>DOM查询的其他方法</h4><ul>
+<li><p>获取页面中的所有元素，相当于document.getElementsByTagName(“*”);</p>
+<p><strong>document.all</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> all = <span class="built_in">document</span>.all;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取页面中html根元素</p>
+<p><strong>document.documentElement</strong></p>
+</li>
+<li><p>获取页面中的body元素</p>
+<p><strong>document.body</strong></p>
+</li>
+<li><p>根据元素的class属性值查询一组元素节点对象（IE8及以下不支持）</p>
+<p><strong>document.getElementsByClassName()</strong></p>
+</li>
+<li><p>根据CSS选择器去页面中查询一个元素</p>
+<ul>
+<li>如果匹配到的元素有多个，则它会返回查询到的第一个元素</li>
+</ul>
+<p><strong>document.querySelector()</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.querySelector(<span class="string">".box1 div"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据CSS选择器去页面中查询一组元素</p>
+<ul>
+<li>会将符合条件的元素封装到一个数组中返回（即便只有一个符合条件的元素）</li>
+</ul>
+<p><strong>document.querySelectorAll()</strong></p>
+</li>
+</ul>
+<h4 id="DOM增删改"><a href="#DOM增删改" class="headerlink" title="DOM增删改"></a>DOM增删改</h4><ul>
+<li><p>创建一个元素节点对象</p>
+<ul>
+<li>将会根据参数中的标签名创建元素节点对象，并将创建好的对象作为返回值返回</li>
+</ul>
+<p><strong>document.createElement(“TagName”)</strong></p>
+</li>
+<li><p>根据文本内容创建一个文本节点对象</p>
+<p><strong>document.createTextNode(“textContent”)</strong></p>
+</li>
+<li><p>向父节点中添加指定的子节点</p>
+<p><strong>父节点.appendChild(子节点)</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用innerHTML也可以完成DOM的增删改的相关操作，一般我们会两种方式结合使用  </span></span><br><span class="line">    <span class="comment">//创建一个li  </span></span><br><span class="line">    <span class="keyword">var</span> li = <span class="built_in">document</span>.createElement(<span class="string">"li"</span>);  </span><br><span class="line">    <span class="comment">//向li中设置文本  </span></span><br><span class="line">    li.innerHTML = <span class="string">"广州"</span>;  </span><br><span class="line">    <span class="comment">//将li添加到city中  </span></span><br><span class="line">    city.appendChild(li);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将一个新的节点插入到旧节点的前边</p>
+<p><strong>父节点.insertBefore(新节点,旧节点)</strong></p>
+</li>
+<li><p>使用一个新节点替换旧节点</p>
+<p><strong>父节点.replaceChild(新节点,旧节点)</strong></p>
+</li>
+<li><p>删除指定的子节点</p>
+<p><strong>父节点.removeChild(子节点)</strong></p>
+<p><strong>推荐方式：</strong>子节点.parentNode.removeChild(子节点)</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为超链接添加点击触发函数</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; allA.length; i++)&#123;</span><br><span class="line">	allA[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//如果使用allA[i]，i会为定值，因为点击触发函数比for循环晚</span></span><br><span class="line">		<span class="keyword">var</span> tr = <span class="keyword">this</span>.parentNode.parentNode;</span><br><span class="line">		<span class="comment">//获取兄弟元素内容</span></span><br><span class="line">        <span class="comment">//var name = tr.getElementsByTagName("td")[0].innerHTML;</span></span><br><span class="line">		<span class="keyword">var</span> name = tr.children[<span class="number">0</span>].innerHTML;</span><br><span class="line">        <span class="comment">//确认true，取消false</span></span><br><span class="line">		<span class="keyword">var</span> flag = confirm(<span class="string">"确认删除"</span> + name + <span class="string">"吗？"</span>)</span><br><span class="line">		<span class="keyword">if</span>(flag)&#123;</span><br><span class="line">			tr.parentNode.removeChild(tr);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//阻止超链接跳转</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
           
