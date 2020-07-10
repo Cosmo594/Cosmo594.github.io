@@ -1407,7 +1407,7 @@ xxxYyyZzz</code></pre></li>
 <p>电子邮件<br>hello  .nihao          @     abc  .com.cn<br>任意字母数字下划线    .任意字母数字下划线  @   任意字母数字     .任意字母（2-5位）   .任意字母（2-5位）<br><strong>\w{3,}  (.\w+)*  @  [A-z0-9]+  (.[A-z]{2,5}){1,2}</strong></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> emailReg = <span class="regexp">/^\w&#123;3,&#125;(\.\w+)*@[A-z0-9]+(\.[A-z]&#123;2,5&#125;)&#123;1,2&#125;$/</span>;</span><br><span class="line"><span class="keyword">var</span> email = <span class="string">"abc.hello@163.com"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(emailReg.test(email));</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="DOM-Document-Object-Model"><a href="#DOM-Document-Object-Model" class="headerlink" title="DOM(Document Object Model)"></a>DOM(Document Object Model)</h2><p><strong>文档对象模型，通过DOM可以来任意来修改网页中各个内容</strong></p>
+<h2 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h2><p><strong>Document Object Model，文档对象模型，通过DOM可以来任意来修改网页中各个内容</strong></p>
 <ul>
 <li><p>文档<br>文档指的是网页，一个网页就是一个文档</p>
 </li>
@@ -1601,6 +1601,136 @@ xxxYyyZzz</code></pre></li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为超链接添加点击触发函数</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; allA.length; i++)&#123;</span><br><span class="line">	allA[i].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//如果使用allA[i]，i会为定值，因为点击触发函数比for循环晚</span></span><br><span class="line">		<span class="keyword">var</span> tr = <span class="keyword">this</span>.parentNode.parentNode;</span><br><span class="line">		<span class="comment">//获取兄弟元素内容</span></span><br><span class="line">        <span class="comment">//var name = tr.getElementsByTagName("td")[0].innerHTML;</span></span><br><span class="line">		<span class="keyword">var</span> name = tr.children[<span class="number">0</span>].innerHTML;</span><br><span class="line">        <span class="comment">//确认true，取消false</span></span><br><span class="line">		<span class="keyword">var</span> flag = confirm(<span class="string">"确认删除"</span> + name + <span class="string">"吗？"</span>)</span><br><span class="line">		<span class="keyword">if</span>(flag)&#123;</span><br><span class="line">			tr.parentNode.removeChild(tr);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//阻止超链接跳转</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="DOM对CSS的操作"><a href="#DOM对CSS的操作" class="headerlink" title="DOM对CSS的操作"></a>DOM对CSS的操作</h4><h5 id="读取和修改内联样式"><a href="#读取和修改内联样式" class="headerlink" title="读取和修改内联样式"></a>读取和修改内联样式</h5><ul>
+<li><p><strong>读取内联样式</strong></p>
+<p>语法：元素.style.样式名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">元素.style.width</span><br><span class="line">元素.style.backgroundColor</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong>如果样式名中带有-，则需要修改为驼峰命名法（将-去掉，然后后的字母改大写）<br>比如：background-color &gt; backgroundColor</p>
+</li>
+<li><p><strong>修改内联样式</strong></p>
+<p>语法：元素.style.样式名 = 样式值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">box1.style.width = <span class="string">"300px"</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>通过style修改和读取的样式都是内联样式</strong></p>
+<p>由于内联样式的优先级比较高，所以我们通过JS来修改的样式，往往会立即生效</p>
+<p><strong>但是如果样式中设置了!important，则此时样式会有最高的优先级，则内联样式将不会生效</strong></p>
+</blockquote>
+</li>
+</ul>
+<h5 id="读取元素的当前样式"><a href="#读取元素的当前样式" class="headerlink" title="读取元素的当前样式"></a>读取元素的当前样式</h5><h6 id="正常浏览器（不支持IE8及以下浏览器）"><a href="#正常浏览器（不支持IE8及以下浏览器）" class="headerlink" title="正常浏览器（不支持IE8及以下浏览器）"></a>正常浏览器（不支持IE8及以下浏览器）</h6><p><code>getComputedStyle()</code></p>
+<ul>
+<li><p>这个方法是window对象的方法，可以返回一个对象，这个对象中保存着当前元素生效样式</p>
+</li>
+<li><p>如果获取的样式没有设置，则会获取到真实的值，而不是默认值</p>
+</li>
+<li><p>参数：<br>1.要获取样式的元素<br>2.可以传递一个伪元素，一般传null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种方法  对象[属性名]</span></span><br><span class="line">getComputedStyle(box, <span class="literal">null</span>)[“width”]</span><br><span class="line"><span class="comment">//第二种方法  对象.属性名</span></span><br><span class="line">getComputedStyle(box, <span class="literal">null</span>).width</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="IE8及以下浏览器"><a href="#IE8及以下浏览器" class="headerlink" title="IE8及以下浏览器"></a>IE8及以下浏览器</h6><p><code>currentStyle</code></p>
+<ul>
+<li><p>如果当前元素没有设置该样式，则获取它的默认值</p>
+</li>
+<li><p>语法：元素.currentStyle.样式名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一种方法  对象[属性名]</span></span><br><span class="line">box.currentStyle[“width”]</span><br><span class="line"><span class="comment">//第二种方法  对象.属性名</span></span><br><span class="line">box.currentStyle.width</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>通过currentStyle和getComputedStyle()读取到的样式<strong>都是只读的，不能修改，</strong></p>
+<p>如果<strong>要修改必须通过style属性</strong></p>
+</blockquote>
+<h6 id="解决浏览器兼容问题"><a href="#解决浏览器兼容问题" class="headerlink" title="解决浏览器兼容问题"></a>解决浏览器兼容问题</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment">* 定义一个函数，用来获取指定元素的当前的样式  </span></span><br><span class="line"><span class="comment">* 参数：  </span></span><br><span class="line"><span class="comment">* 		obj 要获取样式的元素  </span></span><br><span class="line"><span class="comment">* 		name 要获取的样式名  </span></span><br><span class="line"><span class="comment">*/</span>  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStyle</span>(<span class="params">obj , name</span>)</span>&#123;  </span><br><span class="line">	<span class="comment">//加window，是寻找对象的属性，不存在返回undefined，不会报错</span></span><br><span class="line">    <span class="comment">//不加window则是寻找变量（从当前作用域到全局作用域），找不到会报错 </span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">window</span>.getComputedStyle)&#123;  </span><br><span class="line">        <span class="comment">//正常浏览器的方式，具有getComputedStyle()方法  </span></span><br><span class="line">        <span class="keyword">return</span> getComputedStyle(obj , <span class="literal">null</span>)[name];  </span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;  </span><br><span class="line">        <span class="comment">//IE8的方式，没有getComputedStyle()方法  </span></span><br><span class="line">        <span class="keyword">return</span> obj.currentStyle[name];  </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//与上边等同效果，只是写起来简洁</span></span><br><span class="line">    <span class="comment">//return window.getComputedStyle?getComputedStyle(obj , null)[name]:obj.currentStyle[name];</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="其他的样式相关的属性"><a href="#其他的样式相关的属性" class="headerlink" title="其他的样式相关的属性"></a>其他的样式相关的属性</h5><p><strong>注意：</strong>以下样式都是只读的,未指明偏移量都是相对于当前窗口左上角</p>
+<ul>
+<li><p><strong>clientHeight</strong></p>
+<p>元素的可见高度，包括元素的内容区和内边距的高度</p>
+</li>
+<li><p><strong>clientWidth</strong></p>
+<p>元素的可见宽度，包括元素的内容区和内边距的宽度</p>
+</li>
+<li><p><strong>offsetHeight</strong></p>
+<p>整个元素的高度，包括内容区、内边距、边框</p>
+</li>
+<li><p><strong>offsetWidth</strong></p>
+<p>整个元素的宽度，包括内容区、内边距、边框</p>
+</li>
+<li><p><strong>offsetParent</strong></p>
+<p>当前元素的定位父元素<br>离他最近的开启了定位的祖先元素，如果所有的元素都没有开启定位，则返回body</p>
+</li>
+<li><p><strong>offsetLeft</strong></p>
+<p>当前元素相对于其定位父元素的水平偏移量</p>
+</li>
+<li><p><strong>offsetTop</strong></p>
+<p>当前元素相对于其定位父元素的垂直偏移量</p>
+</li>
+<li><p><strong>scrollHeight</strong></p>
+<p>获取元素整个滚动区域的宽度</p>
+</li>
+<li><p><strong>scrollWidth</strong></p>
+<p>获取元素整个滚动区域的高度</p>
+</li>
+<li><p><strong>scrollLeft</strong></p>
+<p>获取水平滚动条滚动的距离</p>
+</li>
+<li><p><strong>scrollTop</strong></p>
+<p>获取垂直滚动条滚动的距离</p>
+</li>
+<li><p><strong>判断滚动条是否到底</strong></p>
+<ul>
+<li><p><strong>垂直滚动条</strong><br>scrollHeight -scrollTop == clientHeight</p>
+</li>
+<li><p><strong>水平滚动</strong><br>scrollWidth -scrollLeft == clientWidth</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件（Event）-1"><a href="#事件（Event）-1" class="headerlink" title="事件（Event）"></a>事件（Event）</h2><h3 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h3><ul>
+<li><p>当响应函数被调用时，浏览器每次都会将一个事件对象作为实参传递进响应函数中，这个事件对象中封装了当前事件的相关信息，比如：鼠标的坐标，键盘的按键，鼠标的按键，滚轮的方向……</p>
+</li>
+<li><p>可以在响应函数中定义一个形参，来使用事件对象，但是在IE8以下浏览器中，响应函数触发时事件对象没有作为实参传递，而是作为window对象的属性保存</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">元素.事件 = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;  </span><br><span class="line">    event = event || <span class="built_in">window</span>.event;  <span class="comment">//解决以上兼容性问题</span></span><br><span class="line">&#125;;  </span><br><span class="line">  </span><br><span class="line">元素.事件 = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;  </span><br><span class="line">	e = e || event;  <span class="comment">//解决以上兼容性问题</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>获取鼠标坐标</strong></p>
+<ul>
+<li><p><strong>clientX和clientY</strong><br>用于获取鼠标相对于可见窗口的坐标<br>div的偏移量，是相对于整个页面的</p>
+</li>
+<li><p><strong>pageX和pageY</strong></p>
+<p>可以获取鼠标相对于当前页面的坐标<br>但是这个两个属性在IE8中不支持</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//onmousemove事件将会在鼠标在元素中移动时被触发</span></span><br><span class="line">areaDiv.onmousemove = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event = event || <span class="built_in">window</span>.event;<span class="comment">//解决事件对象的兼容性问题</span></span><br><span class="line">	<span class="keyword">var</span> x = event.clientX;  <span class="comment">//获取鼠标指针的水平坐标</span></span><br><span class="line">	<span class="keyword">var</span> y = event.clientY;  <span class="comment">//获取鼠标指针的垂直坐标</span></span><br><span class="line">	showMsg.innerHTML = <span class="string">"x = "</span>+x + <span class="string">" , y = "</span>+y;<span class="comment">//在showMsg中显示鼠标的坐标</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="事件的冒泡（Bubble）"><a href="#事件的冒泡（Bubble）" class="headerlink" title="事件的冒泡（Bubble）"></a>事件的冒泡（Bubble）</h3><p>事件的冒泡指的是事件向上传导，当后代元素上的事件被触发时，将会导致其祖先元素上的同类事件也会触发</p>
+<ul>
+<li><p>事件的冒泡大部分情况下都是有益的，如果需要取消冒泡，则需要使用事件对象来取消</p>
+<ul>
+<li>可以将事件对象的cancelBubble设置为true（本仅IE支持，但目前已经基本都支持了）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">元素.事件 = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;  </span><br><span class="line">    event = event || <span class="built_in">window</span>.event;  </span><br><span class="line">    event.cancelBubble = <span class="literal">true</span>;  </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>调用事件对象的stopPropagation()方法（基本都支持，IE不支持）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">元素.事件 = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;  </span><br><span class="line">    event = event || <span class="built_in">window</span>.event;  </span><br><span class="line">    event.stopPropagation();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="事件的委派"><a href="#事件的委派" class="headerlink" title="事件的委派"></a>事件的委派</h3><p>指将事件统一<strong>绑定给元素的共同的祖先元素</strong>，这样当后代元素上的事件触发时，会一直冒泡到祖先元素，从而通过祖先元素的响应函数来处理事件。</p>
+<ul>
+<li><p>事件委派是利用了冒泡，通过委派可以减少事件绑定的次数，提高程序的性能</p>
+</li>
+<li><p>只绑定一次事件，即可应用到多个的元素上，即使元素是后添加的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">u1.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</span><br><span class="line">	event = event || <span class="built_in">window</span>.event;</span><br><span class="line">	<span class="comment">//如果触发事件的对象是我们期望的元素，则执行否则不执行</span></span><br><span class="line">    <span class="comment">//event中的target表示的触发事件的对象</span></span><br><span class="line">	<span class="keyword">if</span>(event.target.className == <span class="string">"link"</span>)&#123;</span><br><span class="line">		alert(<span class="string">"我是ul的单击响应函数"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 
           
         
