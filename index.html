@@ -1547,6 +1547,67 @@ xxxYyyZzz</code></pre></li>
 
 </li>
 </ul>
+<h2 id="常用类和方法"><a href="#常用类和方法" class="headerlink" title="常用类和方法"></a>常用类和方法</h2><h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><p><strong>日期的对象，在JS中通过Date对象来表示一个时间</strong></p>
+<ul>
+<li>创建一个当前代码执行时间的对象</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>创建一个指定的时间对象</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"月/日/年 时:分:秒"</span>);</span><br><span class="line"><span class="keyword">var</span> d2 = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2/18/2011 11:10:30"</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> d2 = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"2/18/2011 11:10:30"</span>);</span><br><span class="line"><span class="keyword">var</span> date = d2.getDate();</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">getDate()</td>
+<td align="left">返回当前日期对象是几日（1-31）</td>
+</tr>
+<tr>
+<td align="left">getDay()</td>
+<td align="left">返回当前日期对象是周几（0-6） 0 周日  1 周一</td>
+</tr>
+<tr>
+<td align="left">getMonth()</td>
+<td align="left">返回当前日期对象的月份（0-11） 0 一月 1 二月</td>
+</tr>
+<tr>
+<td align="left">getFullYear()</td>
+<td align="left">返回当前日期对象的年份（四位数字年份）</td>
+</tr>
+<tr>
+<td align="left">getHours()</td>
+<td align="left">返回 Date 对象的小时 (0 ~ 23)</td>
+</tr>
+<tr>
+<td align="left">getMinutes()</td>
+<td align="left">返回 Date 对象的分钟 (0 ~ 59)</td>
+</tr>
+<tr>
+<td align="left">getSeconds()</td>
+<td align="left">返回 Date 对象的秒数 (0 ~ 59)</td>
+</tr>
+<tr>
+<td align="left">getMilliseconds()</td>
+<td align="left">返回 Date 对象的毫秒(0 ~ 999)</td>
+</tr>
+<tr>
+<td align="left">getTime()</td>
+<td align="left">返回当前日期对象的时间戳（从格林威治标准时间的1970年1月1日0时0分0秒到现在时间的毫秒数，计算机底层保存时间都是以时间戳的形式保存的）</td>
+</tr>
+<tr>
+<td align="left">Date.now()</td>
+<td align="left">可以获取当前代码执行时的时间戳</td>
+</tr>
+</tbody></table>
 
           
         
