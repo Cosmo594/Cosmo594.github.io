@@ -240,6 +240,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.whyes.top/2020/07/26/JavaScript%E9%AB%98%E7%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cosmo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cosmo's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/26/JavaScript%E9%AB%98%E7%BA%A7/" itemprop="url">JavaScript高级</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-26T20:49:17+08:00">
+                2020-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JavaScript高级"><a href="#JavaScript高级" class="headerlink" title="JavaScript高级"></a>JavaScript高级</h1><h2 id="面向过程与面向对象"><a href="#面向过程与面向对象" class="headerlink" title="面向过程与面向对象"></a>面向过程与面向对象</h2><h3 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h3><ul>
+<li>面向过程OOP (Object Oriented Programming)就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候再一个一个的依次调用就可以了。</li>
+</ul>
+<h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><ul>
+<li>面向对象OOP (Object Oriented Programming)是把事务分解成为一个个对象，然后由对象之间分工与合作。</li>
+<li>面向对象的思维特点:<br>1.抽取（抽象）对象共用的属性和行为组织(封装)成一个类(模板)<br>2.对类进行实例化, 获取类的对象</li>
+<li>面向对象编程我们考虑的是有哪些对象，按照面向对象的思维特点,不断的创建对象,使用对象,指挥对象做事情.</li>
+</ul>
+<h3 id="面向过程与面向对象对比"><a href="#面向过程与面向对象对比" class="headerlink" title="面向过程与面向对象对比"></a>面向过程与面向对象对比</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>面向过程</th>
+<th>面向对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>性能比面向对象高，适合跟硬件联系很紧密的东西，例如单片机就采用的面向过程编程。</td>
+<td>易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统 更加灵活、更加易于维护</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>不易维护、不易复用、不易扩展</td>
+<td>性能比面向过程低</td>
+</tr>
+</tbody></table>
+<ul>
+<li>用面向过程的方法写出来的程序是一份蛋炒饭，而用面向对象写出来的程序是一份盖浇饭。</li>
+<li>面向过程适合程序简单、步骤明确的程序，面向对象适合比较复杂、多人合作的程序。</li>
+</ul>
+<h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>对象是由属性和方法组成的：是一个无序键值对的集合，所有的事物都是对象，例如字符串、数值、数组、函数等。</p>
+<ul>
+<li>属性：事物的<strong>特征</strong>，在对象中用<strong>属性</strong>来表示（常用名词）</li>
+<li>方法：事物的<strong>行为</strong>，在对象中用<strong>方法</strong>来表示（常用动词）</li>
+</ul>
+<h4 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字面量创建对象</span></span><br><span class="line"><span class="keyword">var</span> ldh = &#123;</span><br><span class="line">    name: <span class="string">'刘德华'</span>,</span><br><span class="line">    age: <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(ldh);</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数创建对象</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Star</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">18</span>)<span class="comment">//实例化对象</span></span><br><span class="line"><span class="built_in">console</span>.log(ldh);</span><br></pre></td></tr></table></figure>
+
+<p>如上代码运行结果为:<img src="D:%5CWork%5CBlog%5Cstatic%5Cimages%5Cimg3.png" alt=""></p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ul>
+<li><p>在 ES6 中新增加了类的概念，可以使用 class 关键字声明一个类，之后以这个类来实例化对象。</p>
+</li>
+<li><p>类抽象了对象的公共部分，它泛指某一大类（class）</p>
+<p>对象特指某一个，通过<strong>类</strong>实例化一个具体的<strong>对象</strong></p>
+</li>
+</ul>
+<h4 id="创建类"><a href="#创建类" class="headerlink" title="创建类"></a>创建类</h4><ul>
+<li><p>通过class 关键字创建类, 类名我们还是习惯性定义首字母大写</p>
+</li>
+<li><p>constructor() 方法是类的构造函数(默认方法)，用于传递参数,返回实例对象，通过new 命令生成对象实例时<br>，自动调用该方法。只要 new 生成实例时,就会自动调用这个函数, 如果我们不写这个函数,类也会自动生成这个函数</p>
+</li>
+<li><p>多个函数方法之间不需要添加逗号分隔</p>
+</li>
+<li><p>生成实例 new 不能省略</p>
+</li>
+<li><p>语法规范：</p>
+<p>创建类，类名后面不要加小括号</p>
+<p>生成实例 类名后面加小括号</p>
+<p>构造函数不需要加function</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建类 class  创建一个 明星类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Star</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 类的共有属性放到 constructor 里面</span></span><br><span class="line">  <span class="keyword">constructor</span>(name, age) &#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name; <span class="comment">//this指向创建的实例</span></span><br><span class="line">  <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">  <span class="comment">// 2. 利用类创建对象 new</span></span><br><span class="line">  <span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">18</span>);</span><br><span class="line">  <span class="built_in">console</span>.log(ldh);</span><br></pre></td></tr></table></figure>
+
+<p>以上代码运行结果: </p>
+<p><img src="D:%5CWork%5CBlog%5Cstatic%5Cimages%5Cimg4.png" alt=""></p>
+<p>通过结果我们可以看出,运行结果<strong>和使用构造函数方式一样</strong></p>
+<h4 id="类创建添加属性和方法"><a href="#类创建添加属性和方法" class="headerlink" title="类创建添加属性和方法"></a>类创建添加属性和方法</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 1. 创建类 class  创建一个类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Star</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 类的共有属性放到 constructor 里面 constructor是 构造器或者构造函数</span></span><br><span class="line">    <span class="keyword">constructor</span>(uname, age) &#123;</span><br><span class="line">      <span class="keyword">this</span>.uname = uname;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;<span class="comment">//-------------------------------------------&gt;注意,方法与方法之间不需要添加逗号</span></span><br><span class="line">    sing(song) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.uname + <span class="string">'唱'</span> + song);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2. 利用类创建对象 new</span></span><br><span class="line"><span class="keyword">var</span> ldh = <span class="keyword">new</span> Star(<span class="string">'刘德华'</span>, <span class="number">18</span>);</span><br><span class="line"><span class="built_in">console</span>.log(ldh); <span class="comment">// Star &#123;uname: "刘德华", age: 18&#125;</span></span><br><span class="line">ldh.sing(<span class="string">'冰雨'</span>); <span class="comment">// 刘德华唱冰雨</span></span><br></pre></td></tr></table></figure>
+
+<p> 以上代码运行结果:</p>
+<p><img src="D:%5CWork%5CBlog%5Cstatic%5Cimages%5Cimg5.png" alt=""></p>
+<h4 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h4><p>子类可以继承父类的一些属性和方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">      <span class="keyword">constructor</span>(surname) &#123;</span><br><span class="line">        <span class="keyword">this</span>.surname= surname;</span><br><span class="line">      &#125;</span><br><span class="line">      say() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'你的姓是'</span> + <span class="keyword">this</span>.surname);</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;  <span class="comment">// 这样子类就继承了父类的属性和方法</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> damao = <span class="keyword">new</span> Son(<span class="string">'刘'</span>);</span><br><span class="line">damao.say();      <span class="comment">//结果为 你的姓是刘</span></span><br></pre></td></tr></table></figure>
+
+<p>以上代码运行结果:</p>
+<p><img src="D:%5CWork%5CBlog%5Cstatic%5Cimages%5Cimg6.png" alt=""></p>
+<ul>
+<li><p>子类使用super关键字访问父类的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义了父类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">   <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">   <span class="keyword">this</span>.x = x;</span><br><span class="line">   <span class="keyword">this</span>.y = y;</span><br><span class="line">   &#125;</span><br><span class="line">   sum() &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.x + <span class="keyword">this</span>.y);</span><br><span class="line">	&#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//子元素继承父类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">   		 <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    		<span class="keyword">super</span>(x, y); <span class="comment">//使用super调用了父类中的构造函数</span></span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> son = <span class="keyword">new</span> Son(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    son.sum(); <span class="comment">//结果为3</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<ol>
+<li><p>继承中,如果实例化子类输出一个方法,先看子类有没有这个方法,如果有就先执行子类的</p>
+<p>如果子类里面没有,就去查找父类有没有这个方法,如果有,就执行父类的这个方法<strong>(就近原则)</strong></p>
+</li>
+<li><p>如果子类想要继承父类的方法,同时在自己内部扩展自己的方法,利用super调用父类的构造函数,super必须在子类this之前调用</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 父类有加法方法</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">   <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">   <span class="keyword">this</span>.x = x;</span><br><span class="line">   <span class="keyword">this</span>.y = y;</span><br><span class="line">   &#125;</span><br><span class="line">   sum() &#123;</span><br><span class="line">   	<span class="built_in">console</span>.log(<span class="keyword">this</span>.x + <span class="keyword">this</span>.y);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">// 子类继承父类加法方法 同时 扩展减法方法</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;</span><br><span class="line">   <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">   <span class="comment">// 利用super 调用父类的构造函数 super 必须在子类this之前调用,放到this之后会报错</span></span><br><span class="line">   <span class="keyword">super</span>(x, y);</span><br><span class="line">   <span class="keyword">this</span>.x = x;</span><br><span class="line">   <span class="keyword">this</span>.y = y;</span><br><span class="line">  &#125;</span><br><span class="line">  subtract() &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.x - <span class="keyword">this</span>.y);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> son = <span class="keyword">new</span> Son(<span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">son.subtract(); <span class="comment">//2</span></span><br><span class="line">son.sum();<span class="comment">//8</span></span><br></pre></td></tr></table></figure>
+
+<p>![](D:/Work/学习/前端/07-10 JavaScript网页编程/04-JavaScript高级资料/JavaScript 高级_day01/4-笔记/images/img7.png)</p>
+<ol start="3">
+<li><p>时刻注意this的指向问题,类里面的共有的属性和方法一定要加this使用.</p>
+<ol>
+<li>constructor中的this指向的是new出来的实例对象 </li>
+<li>自定义的方法,一般也指向的new出来的实例对象（因为指向的是调用方法的对象）</li>
+<li>绑定事件之后this指向的就是触发事件的事件源（因为指向的是调用方法的对象）</li>
+</ol>
+<p><strong>如下思路使用constructor里面的this：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;button&gt;点击&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    var that;</span></span><br><span class="line"><span class="regexp">    class Star &#123;</span></span><br><span class="line"><span class="regexp">        constructor() &#123;</span></span><br><span class="line"><span class="regexp">            this.btn = document.querySelector('button');</span></span><br><span class="line"><span class="regexp">            this.btn.onclick = this.sing;</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">        sing() &#123;</span></span><br><span class="line"><span class="regexp">            /</span><span class="regexp">/ 这个sing方法里面的this 指向的是 btn 这个按钮,因为这个按钮调用了这个函数</span></span><br><span class="line"><span class="regexp">            console.log(this);</span></span><br><span class="line"><span class="regexp">            console.log(that.uname); /</span><span class="regexp">/ that里面存储的是constructor里面的this</span></span><br><span class="line"><span class="regexp">        &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 ES6 中类没有变量提升，所以必须先定义类，才能通过类实例化对象</p>
+</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.whyes.top/2020/07/22/%E6%A2%B3%E7%90%86#%20javascript;%20javascriptvoid(0);%E5%BA%94%E7%94%A8%E4%BA%8Ea%E8%B6%85%E9%93%BE%E6%8E%A5%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -371,7 +595,7 @@
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"cursor:pointer"</span> <span class="attr">onclick</span>=<span class="string">"foo()"</span>&gt;</span>test<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>这种方式将<code>&lt;span&gt;</code>伪装成<code>&lt;a&gt;</code>的样式，鼠标移过光标可以变成手形，且可以添加点击事件</p>
+<p>这种方式将<code>&lt;span&gt;</code>伪装成<code>&lt;a&gt;</code>的样式，鼠标移过光标可以变成手形，且可以添加点击事件 </p>
 
           
         
@@ -2977,7 +3201,7 @@ xxxYyyZzz</code></pre></li>
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
