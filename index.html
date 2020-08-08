@@ -240,6 +240,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.whyes.top/2020/08/08/React-%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cosmo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cosmo's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/08/React-%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC/" itemprop="url">React-组件传值</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-08T15:36:12+08:00">
+                2020-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、父传子"><a href="#一、父传子" class="headerlink" title="一、父传子"></a>一、父传子</h2><p>　　1、在 state 中准备要传递给子组件的数据</p>
+<p>　　2、以属性的方法将值传递给子组件使用的标签位置</p>
+<p>　　3、在子组件内部使用 this.props 接收父组件传递过来的数据</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 1、在 state 中准备要传递给子组件的数据</span></span><br><span class="line">  state = &#123;</span><br><span class="line">    name: <span class="string">'亚瑟'</span></span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &#123;<span class="comment">/* 2、以属性的方法将值传递给子组件使用的标签位置 */</span>&#125;</span><br><span class="line">        &lt;Son name=&#123;<span class="keyword">this</span>.state.name&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return(</span></span><br><span class="line"><span class="regexp">      &lt;div&gt;</span></span><br><span class="line"><span class="regexp">        &#123;/</span>* <span class="number">3</span>、在子组件内部使用 <span class="keyword">this</span>.props 接收父组件传递过来的数据 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">        父组件传递的值：&#123;this.props.name&#125;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Father</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、子传父"><a href="#二、子传父" class="headerlink" title="二、子传父"></a>二、子传父</h2><p>　　1、在父组件中声明一个回调函数</p>
+<p>　　2、将父组件中声明的函数当成 props 属性值传递给子组件</p>
+<p>　　3、子组件通过 props 调用回调函数</p>
+<p>　　4、将子组件的数据作为参数传递给回调函数</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  state = &#123;</span><br><span class="line">    parMsg: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 1. 在父组件中声明一个回调函数 </span></span><br><span class="line">  parFunc = <span class="function">(<span class="params">msg</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 4.将子组件的数据作为参数传递给回调函数 </span></span><br><span class="line">    <span class="built_in">console</span>.log(msg)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      parMsg: msg</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        父组件：&#123;<span class="keyword">this</span>.state.parMsg&#125;</span><br><span class="line">        &#123;<span class="comment">/* 2.将回调函数当成 props 属性值传递给子组件 */</span>&#125;</span><br><span class="line">        &lt;Son getPar=&#123;<span class="keyword">this</span>.parFunc&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  state = &#123;</span></span><br><span class="line"><span class="regexp">    sonMsg: 18</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  sonFunc = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">    &#123;/</span>* <span class="number">3.</span>子组件通过 props 调用回调函数 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">    this.props.getPar(this.state.sonMsg)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render() &#123;</span></span><br><span class="line"><span class="regexp">    return(</span></span><br><span class="line"><span class="regexp">      &lt;div&gt;</span></span><br><span class="line"><span class="regexp">        子组件：</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.sonFunc&#125;&gt;点击传值给父组件&lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default Father</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三、兄弟传值"><a href="#三、兄弟传值" class="headerlink" title="三、兄弟传值"></a>三、兄弟传值</h2><p>　　兄弟之间的传值就是：首先 子组件1 向 父组件 传值，然后 父组件 传值给 子组件2</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 完成功能：son1 传值给 son2</span></span><br><span class="line"><span class="comment"> * 传值的过程(子-父-子)</span></span><br><span class="line"><span class="comment"> *  将 子组件1 的值传递给父组件，是子向父传值的方法 也就是回调函数</span></span><br><span class="line"><span class="comment"> *  父组件向 子组件2 发送接收到的 子组件1的值，是父向子传值的方法 也就是 props</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Father</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 5.在父组件中定义数据</span></span><br><span class="line">  state = &#123;</span><br><span class="line">    num: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2.父组件开始定义一个回调函数，接收 son1 传递的数据</span></span><br><span class="line">  getFunc = <span class="function">(<span class="params">msg</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 6.在回调函数中接收 son1 传递的数据并赋值给 state 中的数据</span></span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">      num: msg</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h4&gt;我是父组件&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">        &lt;hr/</span>&gt;</span><br><span class="line">        &#123;<span class="comment">/* 1.将两个组件全部在父组件中进行使用 */</span>&#125;</span><br><span class="line">        &#123;<span class="comment">/* 3.将声明的回调函数当成 props 传递给 son1 组件 */</span>&#125;</span><br><span class="line">        &lt;Son1 getParFunc=&#123;<span class="keyword">this</span>.getFunc&#125; /&gt;</span><br><span class="line">        &lt;hr/&gt;</span><br><span class="line">        &#123;<span class="comment">/* 7.将 son1 传递过来的数据传递给 son2 */</span>&#125;</span><br><span class="line">        &lt;Son2 num=&#123;<span class="keyword">this</span>.state.num&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">class Son1 extends React.Component &#123;</span></span><br><span class="line"><span class="regexp">  state = &#123;</span></span><br><span class="line"><span class="regexp">    son1Num: '20'</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  getSonFunc = () =&gt;&#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/ 4.在 son1 子组件中调用父组件传值的回调函数，并传值</span></span><br><span class="line"><span class="regexp">    this.props.getParFunc(this.state.son1Num)</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  render () &#123;</span></span><br><span class="line"><span class="regexp">    return (</span></span><br><span class="line"><span class="regexp">      &lt;div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;h4&gt;我是子组件1&lt;/</span>h4&gt;</span><br><span class="line">        &lt;button onClick=&#123;<span class="keyword">this</span>.getSonFunc&#125;&gt;点击传递给子组件<span class="number">2</span>&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son2</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h4&gt;我是子组件<span class="number">2</span>&lt;<span class="regexp">/h4&gt;</span></span><br><span class="line"><span class="regexp">        &#123;/</span>* <span class="number">8.</span>son2 接收 son1 传递过来的数据 *<span class="regexp">/&#125;</span></span><br><span class="line"><span class="regexp">        &#123;this.props.num&#125;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Father</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://blog.whyes.top/2020/07/26/JavaScript%E9%AB%98%E7%BA%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3339,7 +3472,7 @@ xxxYyyZzz</code></pre></li>
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
