@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言在做antd表格时通常会用到table组件,如何修改antd组件的默认样式想必大家都知道,那么我们如何将表格的奇数行和偶数行设置为不同样式呢,如下图所示  react中覆盖antd组件的样式  渲染时给奇偶行设置不同类名利用Table组件官方API接口修改行的类名,通过类名设置不同行的样式. js文件TableChangeDom.js123456789101112131415161718192">
+<meta property="og:type" content="article">
+<meta property="og:title" content="antd中table表格奇偶行设置不同样式(颜色交替)">
+<meta property="og:url" content="http://blog.whyes.top/2020/08/19/antd%E4%B8%ADtable%E8%A1%A8%E6%A0%BC%E5%A5%87%E5%81%B6%E8%A1%8C%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E6%A0%B7%E5%BC%8F-%E9%A2%9C%E8%89%B2%E4%BA%A4%E6%9B%BF/index.html">
+<meta property="og:site_name" content="Cosmo&#39;s Blog">
+<meta property="og:description" content="前言在做antd表格时通常会用到table组件,如何修改antd组件的默认样式想必大家都知道,那么我们如何将表格的奇数行和偶数行设置为不同样式呢,如下图所示  react中覆盖antd组件的样式  渲染时给奇偶行设置不同类名利用Table组件官方API接口修改行的类名,通过类名设置不同行的样式. js文件TableChangeDom.js123456789101112131415161718192">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200806150610198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW54aW50aWFuZGlzaGVuZw==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1271680/201803/1271680-20180319204841539-1058349650.png">
+<meta property="article:published_time" content="2020-08-19T09:26:26.000Z">
+<meta property="article:modified_time" content="2020-08-19T09:33:08.021Z">
+<meta property="article:author" content="Cosmo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200806150610198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW54aW50aWFuZGlzaGVuZw==,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.whyes.top/2020/08/19/antd中table表格奇偶行设置不同样式-颜色交替/"/>
+
+
+
+
+
+  <title>antd中table表格奇偶行设置不同样式(颜色交替) | Cosmo's Blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7c77d2f00ca0e4c7c7d49d4d586bd1f2";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Cosmo's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">非知之艰，行之惟艰</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.whyes.top/2020/08/19/antd%E4%B8%ADtable%E8%A1%A8%E6%A0%BC%E5%A5%87%E5%81%B6%E8%A1%8C%E8%AE%BE%E7%BD%AE%E4%B8%8D%E5%90%8C%E6%A0%B7%E5%BC%8F-%E9%A2%9C%E8%89%B2%E4%BA%A4%E6%9B%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Cosmo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cosmo's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">antd中table表格奇偶行设置不同样式(颜色交替)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-19T17:26:26+08:00">
+                2020-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在做antd表格时通常会用到table组件,如何修改antd组件的默认样式想必大家都知道,那么我们如何将表格的奇数行和偶数行设置为不同样式呢,如下图所示<br><img src="https://img-blog.csdnimg.cn/20200806150610198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RpYW54aW50aWFuZGlzaGVuZw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<blockquote>
+<p><a href="https://blog.csdn.net/tianxintiandisheng/article/details/104042821?ops_request_misc=%7B%22request%5Fid%22%3A%22159668570319724845036163%22%2C%22scm%22%3A%2220140713.130102334.pc%5Fblog.%22%7D&request_id=159668570319724845036163&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_v2~rank_blog_default-1-104042821.pc_v2_rank_blog_default&utm_term=antd&spm=1018.2118.3001.4187" target="_blank" rel="noopener">react中覆盖antd组件的样式</a></p>
+</blockquote>
+<h1 id="渲染时给奇偶行设置不同类名"><a href="#渲染时给奇偶行设置不同类名" class="headerlink" title="渲染时给奇偶行设置不同类名"></a>渲染时给奇偶行设置不同类名</h1><p>利用Table组件官方API接口修改行的类名,通过类名设置不同行的样式.</p>
+<h2 id="js文件TableChangeDom-js"><a href="#js文件TableChangeDom-js" class="headerlink" title="js文件TableChangeDom.js"></a>js文件<code>TableChangeDom.js</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@file </span>列表奇偶行设置不同样式;渲染时给奇偶行设置不同类名</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Table &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">"./TableChangeDom.less"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataSource = [</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'1'</span>,</span><br><span class="line">    name: <span class="string">'张三'</span>,</span><br><span class="line">    age: <span class="number">32</span>,</span><br><span class="line">    address: <span class="string">'西湖区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'2'</span>,</span><br><span class="line">    name: <span class="string">'李四'</span>,</span><br><span class="line">    age: <span class="number">42</span>,</span><br><span class="line">    address: <span class="string">'下城区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'3'</span>,</span><br><span class="line">    name: <span class="string">'王五'</span>,</span><br><span class="line">    age: <span class="number">52</span>,</span><br><span class="line">    address: <span class="string">'上城区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'4'</span>,</span><br><span class="line">    name: <span class="string">'赵六'</span>,</span><br><span class="line">    age: <span class="number">26</span>,</span><br><span class="line">    address: <span class="string">'余杭区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'5'</span>,</span><br><span class="line">    name: <span class="string">'胡彦祖'</span>,</span><br><span class="line">    age: <span class="number">29</span>,</span><br><span class="line">    address: <span class="string">'萧山区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> columns = [</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'序号'</span>,</span><br><span class="line">    render: <span class="function">(<span class="params">text, record, index</span>) =&gt;</span> <span class="string">`<span class="subst">$&#123;index + <span class="number">1</span>&#125;</span>`</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'姓名'</span>,</span><br><span class="line">    dataIndex: <span class="string">'name'</span>,</span><br><span class="line">    key: <span class="string">'name'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'地址'</span>,</span><br><span class="line">    dataIndex: <span class="string">'address'</span>,</span><br><span class="line">    key: <span class="string">'address'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'年龄'</span>,</span><br><span class="line">    dataIndex: <span class="string">'age'</span>,</span><br><span class="line">    key: <span class="string">'age'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TableChangeDom</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@function </span>获取表格行的类名</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param <span class="type">&#123;array&#125;</span> </span>record 当前行数据</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param <span class="type">&#123;number&#125;</span> </span>index 当前行索引</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return <span class="type">&#123;string&#125;</span> </span>className 类名</span></span><br><span class="line"><span class="comment">   * */</span></span><br><span class="line">  getRowClassName = <span class="function">(<span class="params">record, index</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> className = <span class="string">''</span>;</span><br><span class="line">    className = index % <span class="number">2</span> === <span class="number">0</span> ? styles.oddRow : styles.evenRow;</span><br><span class="line">    <span class="keyword">return</span> className;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="comment">// const &#123; className, ...otherProps &#125; = this.props;</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=&#123;styles.root&#125;&gt;</span><br><span class="line">        &lt;Table dataSource=&#123;dataSource&#125; columns=&#123;columns&#125; pagination=&#123;<span class="literal">false</span>&#125; rowClassName=&#123;<span class="keyword">this</span>.getRowClassName&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default TableChangeDom;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以用下面的方式定义行的样式：</p>
+<p><img src="https://images2018.cnblogs.com/blog/1271680/201803/1271680-20180319204841539-1058349650.png" alt="img"></p>
+<p>在table中加上rowClassName,rowClassName是表格行的类名，接受两个参数，其中index表示第几行，这里</p>
+<p>的行数不包括表头，然后做一下判断，奇偶行给不同的样式就可以了</p>
+<h2 id="css文件TableChangeDom-less"><a href="#css文件TableChangeDom-less" class="headerlink" title="css文件TableChangeDom.less"></a>css文件<code>TableChangeDom.less</code></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.root</span> &#123;</span><br><span class="line">  .oddRow &#123;</span><br><span class="line">    <span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.evenRow</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#c0c0c0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="通过CSS选择器为奇偶行设置不同样式"><a href="#通过CSS选择器为奇偶行设置不同样式" class="headerlink" title="通过CSS选择器为奇偶行设置不同样式"></a>通过CSS选择器为奇偶行设置不同样式</h1><p>使用 <code>:nth-child(n)</code>选择器匹配奇偶行元素并为其设置不同样式</p>
+<h2 id="js文件TableChangeCss-js"><a href="#js文件TableChangeCss-js" class="headerlink" title="js文件TableChangeCss.js"></a>js文件<code>TableChangeCss.js</code></h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@file </span>列表奇偶行设置不同样式;通过CSS选择器为奇偶行设置不同样式</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Table &#125; <span class="keyword">from</span> <span class="string">'antd'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> styles <span class="keyword">from</span> <span class="string">"./TableChangeCss.less"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> dataSource = [</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'1'</span>,</span><br><span class="line">    name: <span class="string">'张三'</span>,</span><br><span class="line">    age: <span class="number">32</span>,</span><br><span class="line">    address: <span class="string">'西湖区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'2'</span>,</span><br><span class="line">    name: <span class="string">'李四'</span>,</span><br><span class="line">    age: <span class="number">42</span>,</span><br><span class="line">    address: <span class="string">'下城区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'3'</span>,</span><br><span class="line">    name: <span class="string">'王五'</span>,</span><br><span class="line">    age: <span class="number">52</span>,</span><br><span class="line">    address: <span class="string">'上城区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'4'</span>,</span><br><span class="line">    name: <span class="string">'赵六'</span>,</span><br><span class="line">    age: <span class="number">26</span>,</span><br><span class="line">    address: <span class="string">'余杭区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    key: <span class="string">'5'</span>,</span><br><span class="line">    name: <span class="string">'胡彦祖'</span>,</span><br><span class="line">    age: <span class="number">29</span>,</span><br><span class="line">    address: <span class="string">'萧山区'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> columns = [</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'序号'</span>,</span><br><span class="line">    render: <span class="function">(<span class="params">text, record, index</span>) =&gt;</span> <span class="string">`<span class="subst">$&#123;index + <span class="number">1</span>&#125;</span>`</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'姓名'</span>,</span><br><span class="line">    dataIndex: <span class="string">'name'</span>,</span><br><span class="line">    key: <span class="string">'name'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'地址'</span>,</span><br><span class="line">    dataIndex: <span class="string">'address'</span>,</span><br><span class="line">    key: <span class="string">'address'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    title: <span class="string">'年龄'</span>,</span><br><span class="line">    dataIndex: <span class="string">'age'</span>,</span><br><span class="line">    key: <span class="string">'age'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TableChangeCss</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=&#123;styles.root&#125;&gt;</span><br><span class="line">        &lt;Table dataSource=&#123;dataSource&#125; columns=&#123;columns&#125; pagination=&#123;<span class="literal">false</span>&#125; /&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default TableChangeCss;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="css文件TableChangeCss-less"><a href="#css文件TableChangeCss-less" class="headerlink" title="css文件TableChangeCss.less"></a>css文件<code>TableChangeCss.less</code></h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.root</span> &#123;</span><br><span class="line">  :global &#123;</span><br><span class="line">    <span class="selector-tag">h1</span><span class="selector-class">.ant-typography</span>,</span><br><span class="line">    <span class="selector-class">.ant-typography</span> <span class="selector-tag">h1</span> &#123;</span><br><span class="line">      <span class="attribute">margin-top</span>: <span class="number">0.5em</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="以上例子的GitHub地址"><a href="#以上例子的GitHub地址" class="headerlink" title="以上例子的GitHub地址"></a>以上例子的GitHub地址</h1><p><a href="https://github.com/tianxintiandisheng/Demo/tree/master/React/umi" target="_blank" rel="noopener">react-demo</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://3x.ant.design/components/table-cn/" target="_blank" rel="noopener">antd-table组件</a><br><a href="https://www.runoob.com/cssref/sel-nth-child.html" target="_blank" rel="noopener">CSS3 :nth-child() 选择器</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/12/%E5%9F%BA%E4%BA%8EDva%E4%B8%8B%E7%9A%84%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/" rel="next" title="基于Dva下的路由跳转">
+                <i class="fa fa-chevron-left"></i> 基于Dva下的路由跳转
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/19/require(history).createBrowserHistory%20instead%20of%20%20equire(historycreateBrowserHistory)/" rel="prev" title="require(history).createBrowserHistory instead of  equire(history/createBrowserHistory)">
+                require(history).createBrowserHistory instead of  equire(history/createBrowserHistory) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="Cosmo" />
+            
+              <p class="site-author-name" itemprop="name">Cosmo</p>
+              <p class="site-description motion-element" itemprop="description">非知之艰，行之惟艰</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#渲染时给奇偶行设置不同类名"><span class="nav-number">2.</span> <span class="nav-text">渲染时给奇偶行设置不同类名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js文件TableChangeDom-js"><span class="nav-number">2.1.</span> <span class="nav-text">js文件TableChangeDom.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css文件TableChangeDom-less"><span class="nav-number">2.2.</span> <span class="nav-text">css文件TableChangeDom.less</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过CSS选择器为奇偶行设置不同样式"><span class="nav-number">3.</span> <span class="nav-text">通过CSS选择器为奇偶行设置不同样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#js文件TableChangeCss-js"><span class="nav-number">3.1.</span> <span class="nav-text">js文件TableChangeCss.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#css文件TableChangeCss-less"><span class="nav-number">3.2.</span> <span class="nav-text">css文件TableChangeCss.less</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#以上例子的GitHub地址"><span class="nav-number">4.</span> <span class="nav-text">以上例子的GitHub地址</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cosmo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
